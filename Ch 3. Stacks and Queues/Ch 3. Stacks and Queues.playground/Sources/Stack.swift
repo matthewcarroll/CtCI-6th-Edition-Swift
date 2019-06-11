@@ -2,7 +2,7 @@ import Foundation
 
 public struct Stack<Element> {
     
-    fileprivate(set) var elements = [Element]()
+    private(set) var elements = [Element]()
     public init() {}
 }
 
