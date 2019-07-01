@@ -16,7 +16,7 @@ public enum Tree<Element: Comparable> {
 
 public extension Tree {
     
-    public init?(sortedIncreasing: [Element]) {
+    init?(sortedIncreasing: [Element]) {
         guard let node = Tree.insert(sortedIncreasing), let element = node.element else { return nil }
         self = .node(element: element, left: node.left, right: node.right)
     }

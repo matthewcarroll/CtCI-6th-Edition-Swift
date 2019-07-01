@@ -28,7 +28,7 @@ public final class TreeClass<Element: Comparable> {
 
 public extension TreeClass {
     
-    public convenience init?(sortedIncreasing: [Element]) {
+    convenience init?(sortedIncreasing: [Element]) {
         guard let node = TreeClass.insert(sortedIncreasing) else { return nil }
         self.init(element: node.element, left: node.left, right: node.right)
     }
@@ -44,7 +44,7 @@ public extension TreeClass {
 
 public extension TreeClass {
     
-    public convenience init(element: Element, leftElement: Element?, rightElement: Element?) {
+    convenience init(element: Element, leftElement: Element?, rightElement: Element?) {
         var left: TreeClass<Element>?
         if let leftElement = leftElement {
             left = TreeClass(element: leftElement, left: nil, right: nil)
@@ -59,7 +59,7 @@ public extension TreeClass {
 
 public extension TreeClass {
     
-    public func insert(_ x: Element) -> Int {
+    func insert(_ x: Element) -> Int {
         if x <= element {
             if let left = left {
                 height = left.insert(x) + 1
