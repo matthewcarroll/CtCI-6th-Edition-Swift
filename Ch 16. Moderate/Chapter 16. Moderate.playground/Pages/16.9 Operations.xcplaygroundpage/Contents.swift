@@ -3,7 +3,7 @@ import Foundation
 /*:
  16.9 Implement subtract, multiply, and divide using only +
  */
-extension Integer where Stride: SignedInteger {
+extension FixedWidthInteger where Stride: SignedInteger {
     
     func restrictedDivide(x: Self) -> Self {
         var _self = self.absv

@@ -1,9 +1,9 @@
 import Foundation
 
 /*:
- 16.1 swap a number without using a temp variable
+ 16.1 Swap a number without using a temp variable
  */
-extension Integer {
+extension BinaryInteger {
     
     mutating func swap(x: inout Self) {
         self += x
