@@ -33,8 +33,8 @@ extension RandomAccessCollection where Iterator.Element: Comparable, SubSequence
   }
 }
 
-var a = (0..<10).map { _ in 100.arc4random_uniform() }
-var b = (0..<10).map { _ in 100.arc4random_uniform() }
+var a = (0..<10).map { _ in Int.random(in: 0...100) }
+var b = (0..<10).map { _ in Int.random(in: 0...100) }
 
 a = a.sorted()
 b = b.sorted()
