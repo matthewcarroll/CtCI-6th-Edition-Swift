@@ -12,11 +12,11 @@ public extension Int {
     }
 }
 
-public extension Integer where Stride: SignedInteger {
+public extension FixedWidthInteger where Stride: SignedInteger {
     
     var bitsSetCount: Int {
         var bitsSetCount = 0
-        let selfInt: Int = numericCast(Self.allZeros.distance(to: self))
+        let selfInt: Int = numericCast(-distance(to: 0))
         for i in 0..<64 {
             let mask = 1 << i
             if selfInt & mask == mask {
@@ -27,13 +27,13 @@ public extension Integer where Stride: SignedInteger {
     }
 }
 
-extension Integer where Stride: SignedInteger {
+extension FixedWidthInteger where Stride: SignedInteger {
     
     var factorial: Self {
         guard self > 1 else { return 1 }
-        let selfInt: Int = numericCast(Self.allZeros.distance(to: self))
+        let selfInt: Int = numericCast(-distance(to: 0))
         let range = 1...selfInt
-        return range.reduce(1, *)
+        return Self(range.reduce(1, *))
     }
 }
 
@@ -46,18 +46,18 @@ extension Set {
         let pairs = zip(left, right)
         return pairs.reduce(1) { $0 * $1.0 / $1.1 }
     }
-
+    
     func combinations(k: Int) -> Int {
         guard k <= count else { return 0 }
         return count.factorial / (k.factorial * (count - k).factorial)
     }
 }
 
-extension Integer where Stride: SignedInteger {
+extension FixedWidthInteger where Stride: SignedInteger {
     
     var twosComplement: Int {
         guard self != 0 else { return 0 }
-        let absv: Int = numericCast(abs(Self.allZeros.distance(to: self)))
+        let absv: Int = numericCast(abs(-distance(to: 0)))
         let msbPosition = self.msbPosition + 1
         let complement = 2.pow(msbPosition) - absv
         let mask = ~0 << msbPosition
@@ -65,7 +65,7 @@ extension Integer where Stride: SignedInteger {
     }
     
     var msbPosition: Int {
-        var absv: Int = numericCast(abs(Self.allZeros.distance(to: self)))
+        var absv: Int = numericCast(abs(-distance(to: 0)))
         var position = 0
         var i = 0
         while absv > 0 {
@@ -80,7 +80,7 @@ extension Integer where Stride: SignedInteger {
     
     var twosComplement2: Int {
         guard self != 0 else { return 0 }
-        let selfInt: Int = numericCast(Self.allZeros.distance(to: self))
+        let selfInt: Int = numericCast(-distance(to: 0))
         let lsbPosition = absv.lsbPosition
         let mask = ~0 << (lsbPosition - 1)
         let complement = ~selfInt & mask
@@ -88,7 +88,7 @@ extension Integer where Stride: SignedInteger {
     }
     
     var lsbPosition: Int {
-        var absv: Int = numericCast(abs(Self.allZeros.distance(to: self)))
+        var absv: Int = numericCast(abs(-distance(to: 0)))
         var i = 0
         while absv > 0 {
             if absv & 1 == 1 {
@@ -101,7 +101,7 @@ extension Integer where Stride: SignedInteger {
     }
 }
 
-public extension IntegerArithmetic {
+public extension FixedWidthInteger {
     
     var absv: Self {
         let zero: Self = self - self
@@ -109,10 +109,10 @@ public extension IntegerArithmetic {
     }
 }
 
-public extension Integer where Stride: SignedInteger {
+public extension FixedWidthInteger where Stride: SignedInteger {
     
     var binaryString: String {
-        let selfInt: Int = numericCast(Self.allZeros.distance(to: self))
+        let selfInt: Int = numericCast(-distance(to: 0))
         var string = ""
         for i in 0..<64 {
             let mask = 1 << i
